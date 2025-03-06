@@ -8,8 +8,17 @@ import Entry_stu from "../pages/Entry_stu";
 import OwnerProfile from "../pages/OwnerProfile";
 import HostelInfo from "../pages/HostelInfo";
 import HostelAdminInfo from "../pages/HostelAdminInfo";
-import AdminDetails from "../pages/AdminDetails";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+// import AdminDetails from "../pages/AdminDetails";
+import { BrowserRouter as Router, Routes, Route, Link, Outlet } from "react-router-dom";
+import GloabalAdminSignup from "../pages/login/GlobalAdminSignup";
+import GloabalAdminLogin from "../pages/login/GlobalAdminLogin"
+import GloabalAdminDashboard from "../pages/dashboard/gloabalAdmin/GloabalAdminDashboard";
+import GloabalAdminAccount from "../pages/dashboard/gloabalAdmin/GloabalAdminAccount";
+import PageNotFound from "./PageNotFound";
+import GetAllHostels from "../pages/dashboard/gloabalAdmin/GetAllHostels";
+import CreateHostel from "../pages/dashboard/gloabalAdmin/CreateHostel";
+
+
 function Routing() {
     return (
         <Routes>
@@ -22,7 +31,19 @@ function Routing() {
             <Route path="/update-stu" element={<Update_stu />} />
             <Route path="/entry-stu" element={<Entry_stu />} />
             <Route path="/hostel-info" element={<HostelInfo />} />
-            <Route path="/admin-details" element={<AdminDetails />} />
+
+            <Route path="/global-admin/dashboard" element={<GloabalAdminDashboard/>} >
+                <Route index element={<GloabalAdminAccount />} />
+                <Route path="create-hostel" element={<CreateHostel />} />
+                <Route path="get-all-hostels" element={<GetAllHostels />} />
+                <Route path="*" element={<PageNotFound/>}/>
+            </Route>
+
+            {/* corrected */}
+            <Route path="/global-admin/login" element={<GloabalAdminLogin />} />
+            <Route path="/global-admin/signup" element={<GloabalAdminSignup/>} />
+            
+            {/* <Route path="/login" element={<AdminDetails />} /> */}
         </Routes>
     );
 }

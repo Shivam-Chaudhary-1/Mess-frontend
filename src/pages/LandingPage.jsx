@@ -5,7 +5,9 @@ import FoodWasteImage from "../assets/foodwaste.jpg";
 import GarbageImage from "../assets/garbage-8040768_1280.jpeg";
 import HungerImage from "../assets/hungerDayImg.jpeg";
 
+
 function LandingPage() {
+    
     return (
         <div className="w-full bg-gradient-to-b from-purple-100 to-purple-200 flex flex-col items-center p-8">
             {/* Image Section */}

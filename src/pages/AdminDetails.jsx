@@ -1,140 +1,211 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+// import React, { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import axios from "axios";
+// import { toast } from "react-toastify";
+// import Loader from "../components/Loader";
 
-function AdminDetails() {
-    const location = useLocation();
-    const { hostelName, isAdding } = location.state || {};
+// function AdminLogin() {
+//     const navigate = useNavigate();
+//     const [adminFirstName, setAdminFirstName] = useState("");
+//     const [adminLastName, setAdminLastName] = useState("");
+//     const [contact, setContact] = useState("");
+//     const [email, setEmail] = useState("");
+//     const [password, setPassword] = useState("");
+//     const [confirmPassword, setConfirmPassword] = useState("");
+//     const [loading, setLoading] = useState(false);  
 
-    const [adminName, setAdminName] = useState("");
-    const [contact, setContact] = useState("");
-    const [email, setEmail] = useState("");
-    const [expanded, setExpanded] = useState(false);
+//     const [submited, setSubmited] = useState(false);
+//     const [otp, setOtp] = useState("");
+//     const [otpVerified, setOtpVerified] = useState(false);
 
-    return (
-        <motion.div
-            className="bg-purple-100 w-full h-screen flex flex-col items-center justify-center"
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-        >
-            {/* Title with animation */}
-            <motion.h1
-                className="text-3xl font-bold mb-6"
-                initial={{ y: -20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5 }}
-            >
-                {isAdding ? "Add Hostel Admin Info" : "Admin Details"}
-            </motion.h1>
 
-            {/* Motion Card */}
-            <motion.div
-                className="w-[50%] bg-white shadow-lg rounded-lg p-6 relative cursor-pointer"
-                onClick={() => setExpanded(!expanded)}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                whileHover={{ scale: 1.05, boxShadow: "0px 10px 20px rgba(0,0,0,0.2)" }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-            >
-                {isAdding ? (
-                    <motion.form
-                        className="flex flex-col gap-4"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.2 }}
-                    >
-                        <label className="font-semibold">Admin Name:</label>
-                        <motion.input
-                            type="text"
-                            className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 transition"
-                            value={adminName}
-                            onChange={(e) => setAdminName(e.target.value)}
-                            placeholder="Enter admin name"
-                            whileFocus={{ scale: 1.02 }}
-                        />
+//     const backendUrl = import.meta.env.VITE_BACKEND_URL;
+//     console.log("backendurl: ", backendUrl);
 
-                        <label className="font-semibold">Contact:</label>
-                        <motion.input
-                            type="text"
-                            className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 transition"
-                            value={contact}
-                            onChange={(e) => setContact(e.target.value)}
-                            placeholder="Enter contact number"
-                            whileFocus={{ scale: 1.02 }}
-                        />
+//     async function LoginGlobalAdmin(e) {
+//         e.preventDefault();
+//         setLoading(true);
+//         try{
+//             const {data} = await axios.post(backendUrl + '/global-admin/login', {email, password});
+//             if(data.success){
+//                 toast.success(data.message);
+//                 navigate('/gloabl-admin/dashboard');
+//                 setO
+//             }
+//         } catch(error){
+//             toast.error(error.message);
+//         }
+//     }
 
-                        <label className="font-semibold">Email:</label>
-                        <motion.input
-                            type="email"
-                            className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 transition"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="Enter email"
-                            whileFocus={{ scale: 1.02 }}
-                        />
+//     async function VerifyOtp(e) {
+//         e.preventDefault();
+//         setOtp(true);
+//         try {
+//             const { data } = await axios.post(backendUrl + '/global-admin/verify-otp', {
+//                 email, otp
+//             });
+//             if(data.success) {
+//                 toast.success(data.message);
+//                 navigate("/admin/dashboard");
+//             }
+//         } catch (error) {
+//             toast.error(error.message);
+//         }
+//         setOtp(false);
+//     }
 
-                        <motion.button
-                            className="mt-4 bg-purple-600 text-white p-2 rounded-lg hover:bg-purple-700 transition"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            Save Admin Info
-                        </motion.button>
-                    </motion.form>
-                ) : (
-                    <div>
-                        {/* Admin Details */}
-                        <motion.h2
-                            className="text-xl font-semibold text-gray-800"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.3 }}
-                        >
-                            {hostelName}
-                        </motion.h2>
+//     async function CreateGlobalAdmin(e) {
+//         e.preventDefault();
+//         // console.log("url", backendUrl+'/global-admin/create');
+//         setLoading(true);
+//         try {
+//             const { data } = await axios.post(backendUrl + '/global-admin/create', {
+//                 firstName: adminFirstName,
+//                 lastName: adminLastName,
+//                 email,
+//                 contactNumber: contact,
+//                 password,
+//                 confirmPassword
+//             });
+//             // console.log("data: ",data);
+//             if (data.success) {
+//                 setSubmited(true);
+//                 toast.success(data.message);
+//             }
+//         } catch (error) {
+//             toast.error(error.message);
+//         }
+//         setLoading(false);
+//     }
 
-                        <motion.p className="mt-2 text-gray-600" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
-                            <strong>Name:</strong> Denver
-                        </motion.p>
-                        <motion.p className="mt-2 text-gray-600" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
-                            <strong>Contact:</strong> 0000554857
-                        </motion.p>
-                        <motion.p className="mt-2 text-gray-600" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}>
-                            <strong>Email:</strong> xyz23@gmail.com
-                        </motion.p>
+//     return (
+//         <div className="bg-purple-100 w-full flex flex-col items-center justify-center min-h-screen">
+//             <h1 className="text-3xl font-bold mb-6">Global Admin Login</h1>
+            
+//             {loading && <div className=" h-[500px] flex  items-center justify-center"><Loader /></div> }
 
-                        {/* Expandable Section */}
-                        <AnimatePresence>
-                            {expanded && (
-                                <motion.div
-                                    className="mt-4 border-t pt-4"
-                                    initial={{ opacity: 0, height: 0 }}
-                                    animate={{ opacity: 1, height: "auto" }}
-                                    exit={{ opacity: 0, height: 0 }}
-                                    transition={{ duration: 0.3 }}
-                                >
-                                    <p className="text-gray-700"><strong>Address:</strong> XYZ Street, City</p>
-                                    <p className="text-gray-700"><strong>Office Hours:</strong> 9 AM - 6 PM</p>
-                                    <p className="text-gray-700"><strong>Additional Notes:</strong> Available for queries</p>
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
+//             { !loading && !submited && <div className="w-[50%] bg-white shadow-lg rounded-lg p-6">
+//                 <form onSubmit={CreateGlobalAdmin} className="flex flex-col gap-4">
+//                     <label className="font-semibold">First Name:</label>
+//                     <input
+//                         required
+//                         type="text"
+//                         className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 transition"
+//                         value={adminFirstName}
+//                         onChange={(e) => setAdminFirstName(e.target.value)}
+//                         placeholder="Enter first name"
+//                     />
+//                     <label className="font-semibold">Last Name:</label>
+//                     <input
+//                         required
+//                         type="text"
+//                         className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 transition"
+//                         value={adminLastName}
+//                         onChange={(e) => setAdminLastName(e.target.value)}
+//                         placeholder="Enter last name"
+//                     />
+//                     <label className="font-semibold">Email:</label>
+//                     <input
+//                         required
+//                         type="email"
+//                         className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 transition"
+//                         value={email}
+//                         onChange={(e) => setEmail(e.target.value)}
+//                         placeholder="Enter email"
+//                     />
+//                     <label className="font-semibold">Contact:</label>
+//                     <input
+//                         required
+//                         type="text"
+//                         className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 transition"
+//                         value={contact}
+//                         onChange={(e) => setContact(e.target.value)}
+//                         placeholder="Enter contact number"
+//                     />
+//                     <label className="font-semibold">Password</label>
+//                     <input
+//                         required
+//                         type="password"
+//                         className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 transition"
+//                         value={password}
+//                         onChange={(e) => setPassword(e.target.value)}
+//                         placeholder="Enter password"
+//                     />
+//                     <label className="font-semibold">Confirm Password:</label>
+//                     <input
+//                         required
+//                         type="password"
+//                         className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 transition"
+//                         value={confirmPassword}
+//                         onChange={(e) => setConfirmPassword(e.target.value)}
+//                         placeholder="Confirm password"
+//                     />
+//                     <button
+//                         className="mt-4 bg-purple-600 text-white p-2 rounded-lg hover:bg-purple-700 transition"
+//                         type="submit"
+//                     >
+//                         Register
+//                     </button>
+//                 </form>
+//             </div> }
 
-                        {/* Expand/Collapse Arrow */}
-                        <motion.div
-                            className="absolute top-4 right-4 text-gray-500"
-                            animate={{ rotate: expanded ? 180 : 0 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            ▼
-                        </motion.div>
-                    </div>
-                )}
-            </motion.div>
-        </motion.div>
-    );
-}
+//             { !loading && submited && !otpVerified && 
+//             <div className="mt-6 px-12 p-4 bg-gray-50 border rounded-md height-screen">
+//                 <h2 className="text-lg font-semibold text-purple-700 mb-2">Verify OTP</h2>
+//                 <form onSubmit={VerifyOtp} className="flex flex-col gap-4">
+//                     <input
+//                         required
+//                         type="text"
+//                         maxLength="6"
+//                         className="p-2 border rounded-lg text-center text-lg tracking-widest shadow-sm 
+//                                    focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition 
+//                                    placeholder-gray-400"
+//                         value={otp}
+//                         onChange={(e) => setOtp(e.target.value)}
+//                         placeholder="Enter 6-digit OTP"
+//                     />
+//                     <button
+//                         className="mt-2 bg-green-600 text-white p-2 rounded-lg hover:bg-green-700 transition"
+//                         type="submit"
+//                     >
+//                         Verify OTP
+//                     </button>
+//                 </form>
+//             </div>
+//             }
 
-export default AdminDetails;
+//             {!loading && submited && otpSent && otpVerified && 
+//                 <div className="w-[50%] bg-white shadow-lg rounded-lg p-6">
+//                 <form onSubmit={LoginGlobalAdmin} className="flex flex-col gap-4">
+//                     <label className="font-semibold">Email:</label>
+//                     <input
+//                         required
+//                         type="email"
+//                         className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 transition"
+//                         value={email}
+//                         onChange={(e) => setEmail(e.target.value)}
+//                         placeholder="Enter email"
+//                     />
+//                     <label className="font-semibold">Password</label>
+//                     <input
+//                         required
+//                         type="password"
+//                         className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 transition"
+//                         value={password}
+//                         onChange={(e) => setPassword(e.target.value)}
+//                         placeholder="Enter password"
+//                     />
+//                     <button
+//                         className="mt-4 bg-purple-600 text-white p-2 rounded-lg hover:bg-purple-700 transition"
+//                         type="submit"
+//                     >
+//                         Login
+//                     </button>
+//                 </form>
+//             </div>
+//             }
+//         </div>
+//     );
+// }
+
+// export default AdminLogin;

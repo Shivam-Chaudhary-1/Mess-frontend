@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 
 function Entry_stu() {
+
+   
     return (
         <div className="bg-gradient-to-b from-purple-100 to-purple-200 px-10 w-full h-screen flex flex-col items-center">
 
@@ -37,7 +39,7 @@ function Entry_stu() {
             </motion.div>
 
             {/* Submit Button */}
-            <div class="flex flex-row gap-12">
+            <div className="flex flex-row gap-12">
 
                 <motion.button
                     className="bg-yellow-400 text-white px-6 py-3 rounded-lg mt-10 hover:bg-blue-500 shadow-md transition-transform duration-300"
