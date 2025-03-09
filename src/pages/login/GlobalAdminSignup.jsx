@@ -72,102 +72,123 @@ function GloabalAdminSignup() {
     }
 
     return (
-        <div className="bg-purple-100 w-full flex flex-col items-center justify-center min-h-screen">
-            <h1 className="text-3xl font-bold mb-6">Global Admin Login</h1>
-            
-            {loading && <div className=" h-[500px] flex  items-center justify-center"><Loader /></div> }
+        <div className="w-full mt-6 flex flex-col items-center justify-center min-h-screen bg-gray-100 px-4">
+    <h1 className="text-4xl font-bold text-green-900 mb-6">Global Admin Registration</h1>
 
-            { !loading && !submited && <div className="w-[50%] bg-white shadow-lg rounded-lg p-6">
-                <form onSubmit={CreateGlobalAdmin} className="flex flex-col gap-4">
-                    <label className="font-semibold">First Name:</label>
+    {loading ? (
+        <div className="h-[500px] flex items-center justify-center">
+            <Loader />
+        </div>
+    ) : !submited ? (
+        <div className="w-full max-w-md bg-white shadow-lg rounded-xl p-8">
+            <h2 className="text-2xl font-semibold text-gray-700 mb-4">Create Global Admin Account</h2>
+            <form onSubmit={CreateGlobalAdmin} className="flex flex-col gap-5">
+                <div>
+                    <label className="font-medium text-gray-700">First Name:</label>
                     <input
                         required
                         type="text"
-                        className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 transition"
+                        className="mt-2 p-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-1 focus:ring-green-600"
                         value={adminFirstName}
                         onChange={(e) => setAdminFirstName(e.target.value)}
                         placeholder="Enter first name"
                     />
-                    <label className="font-semibold">Last Name:</label>
+                </div>
+
+                <div>
+                    <label className="font-medium text-gray-700">Last Name:</label>
                     <input
                         required
                         type="text"
-                        className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 transition"
+                        className="mt-2 p-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-1 focus:ring-green-600"
                         value={adminLastName}
                         onChange={(e) => setAdminLastName(e.target.value)}
                         placeholder="Enter last name"
                     />
-                    <label className="font-semibold">Email:</label>
+                </div>
+
+                <div>
+                    <label className="font-medium text-gray-700">Email:</label>
                     <input
                         required
                         type="email"
-                        className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 transition"
+                        className="mt-2 p-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-1 focus:ring-green-600"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Enter email"
                     />
-                    <label className="font-semibold">Contact:</label>
+                </div>
+
+                <div>
+                    <label className="font-medium text-gray-700">Contact:</label>
                     <input
                         required
                         type="text"
-                        className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 transition"
+                        className="mt-2 p-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-1 focus:ring-green-600"
                         value={contact}
                         onChange={(e) => setContact(e.target.value)}
                         placeholder="Enter contact number"
                     />
-                    <label className="font-semibold">Password</label>
+                </div>
+
+                <div>
+                    <label className="font-medium text-gray-700">Password:</label>
                     <input
                         required
                         type="password"
-                        className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 transition"
+                        className="mt-2 p-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-1 focus:ring-green-600"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Enter password"
                     />
-                    <label className="font-semibold">Confirm Password:</label>
+                </div>
+
+                <div>
+                    <label className="font-medium text-gray-700">Confirm Password:</label>
                     <input
                         required
                         type="password"
-                        className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 transition"
+                        className="mt-2 p-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-1 focus:ring-green-600"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         placeholder="Confirm password"
                     />
-                    <button
-                        className="mt-4 bg-purple-600 text-white p-2 rounded-lg hover:bg-purple-700 transition"
-                        type="submit"
-                    >
-                        Register
-                    </button>
-                </form>
-            </div> }
+                </div>
 
-            { !loading && submited && !otpVerified && 
-            <div className="mt-6 px-12 p-4 bg-gray-50 border rounded-md height-screen">
-                <h2 className="text-lg font-semibold text-purple-700 mb-2">Verify OTP</h2>
-                <form onSubmit={VerifyOtp} className="flex flex-col gap-4">
-                    <input
-                        required
-                        type="text"
-                        maxLength="6"
-                        className="p-2 border rounded-lg text-center text-lg tracking-widest shadow-sm 
-                                   focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition 
-                                   placeholder-gray-400"
-                        value={otp}
-                        onChange={(e) => setOtp(e.target.value)}
-                        placeholder="Enter 6-digit OTP"
-                    />
-                    <button
-                        className="mt-2 bg-green-600 text-white p-2 rounded-lg hover:bg-green-700 transition"
-                        type="submit"
-                    >
-                        Verify OTP
-                    </button>
-                </form>
-            </div>
-            }
-
+                <button
+                    className="mt-4 bg-yellow-600 text-white px-6 py-3 rounded-lg text-lg font-medium shadow-md hover:bg-yellow-700 transition-all duration-300"
+                    type="submit"
+                >
+                    Register as Global Admin
+                </button>
+            </form>
         </div>
+    ) : !otpVerified ? (
+        <div className="mt-6 w-full max-w-md bg-white shadow-lg rounded-xl p-8">
+            <h2 className="text-xl font-semibold text-gray-700 mb-4">Verify OTP</h2>
+            <form onSubmit={VerifyOtp} className="flex flex-col gap-4">
+                <input
+                    required
+                    type="text"
+                    maxLength="6"
+                    className="p-3 border border-gray-300 rounded-lg text-center text-lg tracking-widest shadow-sm 
+                               focus:outline-none focus:ring-1 focus:ring-green-600  transition 
+                               placeholder-gray-400"
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value)}
+                    placeholder="Enter 6-digit OTP"
+                />
+                <button
+                    className="mt-2 bg-yellow-600 text-white px-6 py-3 rounded-lg text-lg font-medium shadow-md hover:bg-yellow-700 transition-all duration-300"
+                    type="submit"
+                >
+                    Verify OTP
+                </button>
+            </form>
+        </div>
+    ) : null}
+</div>
+
     );
 }
 

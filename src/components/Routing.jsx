@@ -17,6 +17,18 @@ import GloabalAdminAccount from "../pages/dashboard/gloabalAdmin/GloabalAdminAcc
 import PageNotFound from "./PageNotFound";
 import GetAllHostels from "../pages/dashboard/gloabalAdmin/GetAllHostels";
 import CreateHostel from "../pages/dashboard/gloabalAdmin/CreateHostel";
+import HostelAdminLogin from "../pages/login/HostelAdminLogin";
+import HostelAdminDashboard from "../pages/dashboard/hostelAdminDashboard/HostelAdminDashboard";
+import HostelAdminAccount from "../pages/dashboard/hostelAdminDashboard/HostelAdminAccount";
+import CreateStudent from "../pages/dashboard/hostelAdminDashboard/CreateStudent";
+import ShowAllStudents from "../pages/dashboard/hostelAdminDashboard/ShowAllStudents";
+import DeleteStudent from "../pages/dashboard/hostelAdminDashboard/DeleteStudent";
+import HostelStatus from "../pages/dashboard/hostelAdminDashboard/HostelStatus";
+import CreateGateAdmin from "../pages/dashboard/gloabalAdmin/CreateGateAdmin";
+import GetAllGates from "../pages/dashboard/gloabalAdmin/GetAllGates";
+import GateAdminDashboard from "../pages/dashboard/gateAdmin/GateAdminDashboard";
+import GateAdminAccount from "../pages/dashboard/gateAdmin/GateAdminAccount";
+import StudentEntry from "../pages/dashboard/gateAdmin/StudentEntry";
 
 
 function Routing() {
@@ -31,17 +43,46 @@ function Routing() {
             <Route path="/update-stu" element={<Update_stu />} />
             <Route path="/entry-stu" element={<Entry_stu />} />
             <Route path="/hostel-info" element={<HostelInfo />} />
-
+             
+             {/* Gate admin */}
             <Route path="/global-admin/dashboard" element={<GloabalAdminDashboard/>} >
                 <Route index element={<GloabalAdminAccount />} />
                 <Route path="create-hostel" element={<CreateHostel />} />
+                <Route path="create-gate" element={<CreateGateAdmin />} />
                 <Route path="get-all-hostels" element={<GetAllHostels />} />
+                <Route path="get-all-gates" element={<GetAllGates />} />
+                <Route path="*" element={<PageNotFound/>}/>
+            </Route>
+             
+
+
+             {/* hostel */}
+            <Route path="/hostel-admin/dashboard" element={<HostelAdminDashboard/>} >
+                <Route index element={<HostelAdminAccount/>} />
+                <Route path="create-student" element={<CreateStudent/>} />
+                <Route path="get-all-students" element={<ShowAllStudents />} />
+                <Route path="delete-student" element={<DeleteStudent />} />
+                <Route path="current-status" element={<HostelStatus />} />
+                <Route path="*" element={<PageNotFound/>}/>
+            </Route>
+
+
+            {/* gate admin */}
+            <Route path="/gate-admin/dashboard" element={<GateAdminDashboard/>} >
+                <Route index element={<GateAdminAccount/>} />
+                <Route path="student-entry" element={<StudentEntry/>}/>
                 <Route path="*" element={<PageNotFound/>}/>
             </Route>
 
             {/* corrected */}
-            <Route path="/global-admin/login" element={<GloabalAdminLogin />} />
-            <Route path="/global-admin/signup" element={<GloabalAdminSignup/>} />
+            {/* <Route path="/global-admin/login" element={<GloabalAdminLogin />} />
+            <Route path="/global-admin/signup" element={<GloabalAdminSignup/>} /> */}
+            <Route path="/hostel-admin/login" element={<HostelAdminLogin/>}/>
+
+            <Route path="/login" element={<GloabalAdminLogin />} />
+            <Route path="/signup" element={<GloabalAdminSignup/>} />
+
+            <Route path="*" element={<PageNotFound/>}/>
             
             {/* <Route path="/login" element={<AdminDetails />} /> */}
         </Routes>

@@ -62,102 +62,133 @@ const GloabalAdminAccount = () => {
 
 
   return (
-    <div className=' w-full h-full bg-purple-100 flex justify-center item-center flex-col gap-4 p-4'>
-        <h1 className=' text-center text-3xl font-semibold text-gray-800'>Account Information</h1>
-        <div>
-            <form className='flex flex-col gap-4 p-4 lg:w-1/2 mx-auto bg-gray-100 rounded-md p-6'>
-                <div className='flex flex-col gap-4'>
-                
-                    <div className='flex  gap-2 justify-between border-b pb-2 border-black'>
-                        <div className='flex  gap-2 justify-between w-[80%]'>
-                        <label htmlFor="name">Firts name</label>
-                        <input disabled={!isFirstNameUpdating} onChange={ (e) =>setFirstName(e.target.value)} value={firstName} type="text" id='name' placeholder='Name' className=' opacity-60 outline-none bg-gray-100' />
-                        </div>
-                        <div className=' pr-3 w-[30%] flex justify-end'>
-                            {!isFirstNameUpdating ? <MdModeEdit onClick={handleFirstName} className=' cursor-pointer' /> : <div className=' flex gap-2'>
-                                <button disabled={loading} 
-                                                 onClick={()=>{
-                                                    updateHandler();
-                                                    setIsFirstNameUpdating(false);
-                                                 }}
-                                                 className=' border border-black text-black text-white rounded-md px-2'>Save</button>
-                                <button disabled={loading} 
-                                        onClick={ () => {
-                                            setIsFirstNameUpdating(false);
-                                            setFirstName(user.firstName);
-                                        }}
-                                        className=' border border-black text-red-700 text-white rounded-md px-2'  >Cancel</button>
-                            </div>}
-                        </div>
-                    </div>
-
-                    <div className='flex  gap-2 justify-between border-b pb-2 border-black'>
-                        <div className='flex  gap-2 justify-between w-[80%]'>
-                        <label htmlFor="name">Last name</label>
-                        <input disabled={!isLastNameUpdating} onChange={ (e) =>setLastName(e.target.value)}  value={lastName} type="text" id='name' placeholder='Name' className=' opacity-60 outline-none bg-gray-100' />
-                        </div>
-                        <div className=' pr-3 w-[30%] flex justify-end'>
-                            {!isLastNameUpdating ? <MdModeEdit onClick={handleLastName} className=' cursor-pointer' /> : <div className=' flex gap-2'>
-                                <button disabled={loading}
-                                         onClick={()=>{
-                                                    updateHandler();
-                                                    setIsLastNameUpdating(false);
-                                                 }}
-                                         className='border border-black text-black text-white rounded-md px-2'>Save</button>
-                                <button disabled={loading} 
-                                        onClick={ () => {
-                                            setIsLastNameUpdating(false);
-                                            setLastName(user.lastName);
-                                        }}
-                                        className='border border-black text-red-700 text-white rounded-md px-2'>Cancel</button>
-                            </div>}
-                        </div>
-                    </div>
-
-                    <div className='flex  gap-2 justify-between border-b pb-2 border-black'>
-                        <div className='flex  gap-2 justify-between w-[80%]'>
-                        <label htmlFor="email">Email</label>
-                        <input disabled={!isEmailUpdating} onChange={ (e) =>setEmail(e.target.value)}  value={email} type="email" id='email' placeholder='Email' className=' opacity-60 outline-none bg-gray-100' />
-                        </div>
-                        <div className=' pr-3 w-[30%] flex justify-end'>
-                            {!isEmailUpdating ? <MdModeEdit onClick={handleEmail} className=' cursor-pointer' /> : <div className=' flex gap-2'>
-                                <button disabled={loading} className='border border-black text-black text-white rounded-md px-2'>Save</button>
-                                <button disabled={loading} 
-                                        onClick={ () => {
-                                            setIsEmailUpdating(false);
-                                            setEmail(user.email);
-                                        }}
-                                        className='border border-black text-red-700 text-white rounded-md px-2'>Cancel</button>
-                            </div>}
-                        </div>
-                    </div>
-
-                    <div className='flex  gap-2 justify-between border-b pb-2 border-black'>
-                        <div className='flex  gap-2 justify-between w-[80%]'>
-                        <label htmlFor="phone">Phone</label>
-                        <input disabled={!isContactUpdating} onChange={ (e) =>setContactNumber(e.target.value)}  value={contactNumber} type="tel" id='phone' placeholder='Phone' className=' opacity-60 outline-none bg-gray-100' />
-                        </div>
-                        <div className=' pr-3 w-[30%] flex justify-end'>
-                            {!isContactUpdating ? <MdModeEdit onClick={handleContact} className=' cursor-pointer' /> : <div className=' flex gap-2'>
-                                <button disabled={loading} className='border border-black text-black text-white rounded-md px-2'>Save</button>
-                                <button disabled={loading} 
-                                        onClick={ () => {
-                                            setIsContactUpdating(false);
-                                            setContactNumber(user.contactNumber);
-                                        }}
-                                        className='border border-black text-red-700 text-white rounded-md px-2'>Cancel</button>
-                            </div>}
-                        </div>
-                    </div>
-
-                    {/* <div className='flex flex-col gap-2'>
-                        <button className='bg-purple-700 text-white p-2 rounded-md'>Update</button>
-                    </div> */}
-
-                </div>
-            </form>
+    <div className=' text-[18px] w-full h-full bg-gray-100 flex justify-center item-center flex-col gap-4 p-4'>
+            <h1 className=' text-center text-3xl font-semibold text-slate-700'>Account Information</h1>
+            <div>
+            <form className="flex flex-col gap-6 p-6 w-[70%] mx-auto bg-white rounded-lg shadow-lg">
+      <div className="flex flex-col gap-6">
+        {/* First Name */}
+        <div className="flex justify-between items-center border-b pb-2 border-gray-300">
+          <div className="flex flex-col w-[80%]">
+            <label htmlFor="firstName" className="text-gray-700 font-medium">First Name</label>
+            <input 
+              disabled={!isFirstNameUpdating} 
+              onChange={(e) => setFirstName(e.target.value)} 
+              value={firstName} 
+              type="text" 
+              id="firstName" 
+              placeholder="Enter first name" 
+              className={`outline-none bg-transparent text-gray-800 text-lg ${isFirstNameUpdating ? "border-b border-gray-500 focus:border-green-600" : "opacity-60"}`} 
+            />
+          </div>
+          <div className="flex justify-end w-[20%]">
+            {!isFirstNameUpdating ? (
+              <MdModeEdit onClick={handleFirstName} className="text-gray-500 cursor-pointer hover:text-green-800" size={20} />
+            ) : (
+              <div className="flex gap-2">
+                <button 
+                  disabled={loading} 
+                  onClick={() => { updateHandler(); setIsFirstNameUpdating(false); }} 
+                  className="bg-green-800 hover:bg-green-700 text-white px-3 py-1 rounded-md transition"
+                >Save</button>
+                <button 
+                  disabled={loading} 
+                  onClick={() => { setIsFirstNameUpdating(false); setFirstName(user.firstName); }} 
+                  className="border border-gray-500 text-gray-700 px-3 py-1 rounded-md hover:bg-gray-200 transition"
+                >Cancel</button>
+              </div>
+            )}
+          </div>
         </div>
-    </div>
+    
+        {/* Last Name */}
+        <div className="flex justify-between items-center border-b pb-2 border-gray-300">
+          <div className="flex flex-col w-[80%]">
+            <label htmlFor="lastName" className="text-gray-700 font-medium">Last Name</label>
+            <input 
+              disabled={!isLastNameUpdating} 
+              onChange={(e) => setLastName(e.target.value)} 
+              value={lastName} 
+              type="text" 
+              id="lastName" 
+              placeholder="Enter last name" 
+              className={`outline-none bg-transparent text-gray-800 text-lg ${isLastNameUpdating ? "border-b border-gray-500 focus:border-green-600" : "opacity-60"}`} 
+            />
+          </div>
+          <div className="flex justify-end w-[20%]">
+            {!isLastNameUpdating ? (
+              <MdModeEdit onClick={handleLastName} className="text-gray-500 cursor-pointer hover:text-green-800" size={20} />
+            ) : (
+              <div className="flex gap-2">
+                <button 
+                  disabled={loading} 
+                  onClick={() => { updateHandler(); setIsLastNameUpdating(false); }} 
+                  className="bg-green-800 hover:bg-green-700 text-white px-3 py-1 rounded-md transition"
+                >Save</button>
+                <button 
+                  disabled={loading} 
+                  onClick={() => { setIsLastNameUpdating(false); setLastName(user.lastName); }} 
+                  className="border border-gray-500 text-gray-700 px-3 py-1 rounded-md hover:bg-gray-200 transition"
+                >Cancel</button>
+              </div>
+            )}
+          </div>
+        </div>
+    
+        {/* Email (Unchangeable) */}
+        <div className="flex justify-between items-center border-b pb-2 border-gray-300">
+          <div className="flex flex-col w-[80%]">
+            <label htmlFor="email" className="text-gray-700 font-medium">Email</label>
+            <input 
+              disabled 
+              value={email} 
+              type="email" 
+              id="email" 
+              className="outline-none bg-transparent text-gray-800 text-lg opacity-60 cursor-not-allowed" 
+            />
+          </div>
+          <div className="flex justify-end w-[20%]">
+            <button disabled className="border border-gray-400 text-gray-500 px-3 py-1 rounded-md">Unchangeable</button>
+          </div>
+        </div>
+    
+        {/* Phone Number */}
+        <div className="flex justify-between items-center border-b pb-2 border-gray-300">
+          <div className="flex flex-col w-[80%]">
+            <label htmlFor="phone" className="text-gray-700 font-medium">Phone</label>
+            <input 
+              disabled={!isContactUpdating} 
+              onChange={(e) => setContactNumber(e.target.value)} 
+              value={contactNumber} 
+              type="tel" 
+              id="phone" 
+              placeholder="Enter phone number" 
+              className={`outline-none bg-transparent text-gray-800 text-lg ${isContactUpdating ? "border-b border-gray-500 focus:border-green-600" : "opacity-60"}`} 
+            />
+          </div>
+          <div className="flex justify-end w-[20%]">
+            {!isContactUpdating ? (
+              <MdModeEdit onClick={handleContact} className="text-gray-500 cursor-pointer hover:text-green-800" size={20} />
+            ) : (
+              <div className="flex gap-2">
+                <button 
+                  disabled={loading} 
+                  className="bg-green-800 hover:bg-green-700 text-white px-3 py-1 rounded-md  transition"
+                >Save</button>
+                <button 
+                  disabled={loading} 
+                  onClick={() => { setIsContactUpdating(false); setContactNumber(user.contactNumber); }} 
+                  className="border border-gray-500 text-gray-700 px-3 py-1 rounded-md hover:bg-green-200 transition"
+                >Cancel</button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </form>
+    
+            </div>
+        </div>
   )
 }
 

@@ -39,7 +39,7 @@ function Create_stu() {
 
       {/* Submit Button */}
       <motion.button
-        className="bg-teal-400 text-white px-6 py-3 rounded-lg mt-10 hover:bg-teal-500 shadow-md transition-transform duration-300"
+        className="bg-purple-400 text-white px-6 py-3 rounded-lg mt-10 hover:bg-teal-500 shadow-md transition-transform duration-300"
         whileHover={{ scale: 1.05 }}
       >
         Submit
