@@ -1,12 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
-import ChildImage from "../assets/child-8966218_1280.jpeg";
-import FoodWasteImage from "../assets/foodwaste.jpg";
-import GarbageImage from "../assets/garbage-8040768_1280.jpeg";
-import HungerImage from "../assets/hungerDayImg.jpeg";
-import Footer from "../components/Footer";
-// const images = [ChildImage, FoodWasteImage, GarbageImage, HungerImage, chefImage, tomato, thal, city];
-const images = [ChildImage, FoodWasteImage, GarbageImage, HungerImage,ChildImage, FoodWasteImage, GarbageImage, HungerImage];
+
 
 export default function LandingPage() {
     return (

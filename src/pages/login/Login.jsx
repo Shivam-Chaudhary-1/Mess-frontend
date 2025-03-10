@@ -6,7 +6,7 @@ import { login } from "../../slices/authSlice";
 import axios from "axios";
 import Loader from "../../components/Loader";
 
-const GlobalAdminLogin = () => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -47,7 +47,7 @@ const GlobalAdminLogin = () => {
 
   return (
     <div className="w-full flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <h1 className="text-3xl font-semibold text-green-900 mb-6 font-bold">Admin Login</h1>
+      <h1 className="text-3xl  text-green-900 mb-6 font-bold">Admin Login</h1>
 
       {/* Role Selection */}
       <button
@@ -107,4 +107,4 @@ const GlobalAdminLogin = () => {
   );
 };
 
-export default GlobalAdminLogin;
+export default Login;
